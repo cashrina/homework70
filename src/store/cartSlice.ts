@@ -13,9 +13,9 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addDish: (state, { payload: contact }: PayloadAction<ApiContact>) => {
+    addContact: (state, { payload: contact }: PayloadAction<CartContact>) => {
       const index = state.cartContacts.findIndex(
-        (cartContact) => cartContact.contact.id === contact.id,
+        (cartContact) => cartContact.contact.id === contact.contact.id,
       );
 
       if (index !== -1) {
@@ -28,7 +28,7 @@ const cartSlice = createSlice({
       }
     },
 
-    updateDishes: (state, { payload: dishes }: PayloadAction<ApiContact[]>) => {
+    updateContact: (state, { payload: contacts }: PayloadAction<ApiContact[]>) => {
       const newCartPerson: CartContact[] = [];
       state.cartContacts.forEach((cartContact: CartContact) => {
         const exitingCart = contacts.find((contact) => cartContact.contact.id === contact.id);
@@ -39,7 +39,7 @@ const cartSlice = createSlice({
 
         newCartPerson.push({
           ...cartContacts,
-          dish: exitingCart,
+          contact: exitingCart,
         });
       });
 
@@ -57,6 +57,6 @@ const cartSlice = createSlice({
 
 export const cartReducer = cartSlice.reducer;
 
-export const { addDish, updateDishes, clearCart } = cartSlice.actions;
+export const { addContact, updateContact, clearCart } = cartSlice.actions;
 
 export const { selectCartPerson } = cartSlice.selectors;

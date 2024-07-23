@@ -8,8 +8,8 @@ export const fetchContacts = createAsyncThunk<
     undefined,
     { dispatch: AppDispatch }
 >('contacts/fetchContacts', async (_, thunkAPI) => {
-    const dishesResponse = await axiosApi.get<ApiContact | null>('/contacts.json');
-    const contacts = dishesResponse.data;
+    const contactResponse = await axiosApi.get<ApiContact | null>('/contacts.json');
+    const contacts = contactResponse.data;
 
     let newContacts: ApiContact[] = [];
 
@@ -46,7 +46,7 @@ export const fetchOneContact = createAsyncThunk<ApiContact, string>(
     'contacts/fetchOneContact',
     async (id) => {
         const { data: contact } = await axiosApi.get<ApiContact | null>(
-            `/dishes/${id}.json`,
+            `/contacts/${id}.json`,
         );
 
         if (contact === null) {

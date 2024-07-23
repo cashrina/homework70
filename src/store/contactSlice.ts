@@ -66,8 +66,8 @@ export const contactSlice = createSlice({
                 state.oneContacts = null;
                 state.fetchOneLoading = true;
             })
-            .addCase(fetchOneContact.fulfilled, (state, { payload: apiDish }) => {
-                state.oneContacts = apiDish;
+            .addCase(fetchOneContact.fulfilled, (state, { payload: apiContact }) => {
+                state.oneContacts = apiContact;
                 state.fetchOneLoading = false;
             })
             .addCase(fetchOneContact.rejected, (state) => {
